@@ -38,14 +38,32 @@ FMOD_RESULT F_API FMOD_System_GetDriverInfo          (FMOD_SYSTEM *system, int i
     return fmodfn.System_GetDriverInfo((FMOD1_SYSTEM*)system, id, name, namelen, (FMOD1_GUID*)guid, &systemrate, &speakermode, &speakermodechannels);
 }
 FMOD_RESULT F_API FMOD_System_GetDriverInfoW         (FMOD_SYSTEM *system, int id, short *name, int namelen, FMOD_GUID *guid) {
-    FAKE(System_GetDriverInfoW);
-    // TODO?
-    //return fmodfn.System_GetDriverInfoW((FMOD1_SYSTEM*)system, id, name, namelen, guid);
+    //FAKE(System_GetDriverInfoW);
+    LOAD(System_GetDriverInfo);
+    int systemrate;
+    FMOD1_SPEAKERMODE speakermode;
+    int speakermodechannels;
+    char name_[256];
+    if (namelen>512) namelen=512;
+    FMOD_RESULT ret = fmodfn.System_GetDriverInfo((FMOD1_SYSTEM*)system, id, name_, namelen/2, (FMOD1_GUID*)guid, &systemrate, &speakermode, &speakermodechannels);
+    if(name)
+        for(int i=0; i<=namelen/2; ++i)
+            name[i] = name_[i];
+    return ret;
+    
 }
 FMOD_RESULT F_API FMOD_System_GetDriverCaps          (FMOD_SYSTEM *system, int id, FMOD_CAPS *caps, int *controlpaneloutputrate, FMOD_SPEAKERMODE *controlpanelspeakermode) {
-    FAKE(System_GetDriverCaps);
-    // TODO?
-    //return fmodfn.System_GetDriverCaps((FMOD1_SYSTEM*)system, id, caps, controlpaneloutputrate, controlpanelspeakermode);
+    LOAD(System_GetDriverInfo);
+    int systemrate;
+    FMOD1_SPEAKERMODE speakermode;
+    int speakermodechannels;
+    FMOD1_GUID guid;
+    FMOD_RESULT ret = fmodfn.System_GetDriverInfo((FMOD1_SYSTEM*)system, id, NULL, 0, &guid, &systemrate, &speakermode, &speakermodechannels);
+    if(caps) *caps = FMOD_CAPS_OUTPUT_FORMAT_PCM8 | FMOD_CAPS_OUTPUT_FORMAT_PCM16;
+    if (controlpaneloutputrate) *controlpaneloutputrate = systemrate;
+    if(controlpanelspeakermode) *controlpanelspeakermode = SpeakerModeFrom(speakermode);
+    return ret;
+    //FAKE(System_GetDriverCaps);
 }
 FMOD_RESULT F_API FMOD_System_SetDriver              (FMOD_SYSTEM *system, int driver) {
     LOAD(System_SetDriver);
