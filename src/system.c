@@ -381,7 +381,7 @@ FMOD_RESULT F_API FMOD_System_CreateDSPByType        (FMOD_SYSTEM *system, FMOD_
 {
     LOAD(System_CreateDSPByType);
     // TODO: convert "type" parameter
-    return fmodfn.System_CreateDSPByType((FMOD1_SYSTEM*)system, type, (FMOD1_DSP**)dsp);
+    return fmodfn.System_CreateDSPByType((FMOD1_SYSTEM*)system, DspType(type), (FMOD1_DSP**)dsp);
 }
 FMOD_RESULT F_API FMOD_System_CreateChannelGroup     (FMOD_SYSTEM *system, const char *name, FMOD_CHANNELGROUP **channelgroup)
 {

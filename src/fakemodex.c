@@ -606,3 +606,97 @@ FMOD_SPEAKERMODE SpeakerModeFrom(FMOD1_SPEAKERMODE mode)
     }
     return FMOD_SPEAKERMODE_RAW;
 }
+
+FMOD1_DSP_TYPE DspType(FMOD_DSP_TYPE type)
+{
+    // From:
+    //FMOD_DSP_TYPE_UNKNOWN,            /* This unit was created via a non FMOD plugin so has an unknown purpose. */
+    //FMOD_DSP_TYPE_MIXER,              /* This unit does nothing but take inputs and mix them together then feed the result to the soundcard unit. */
+    //FMOD_DSP_TYPE_OSCILLATOR,         /* This unit generates sine/square/saw/triangle or noise tones. */
+    //FMOD_DSP_TYPE_LOWPASS,            /* This unit filters sound using a high quality, resonant lowpass filter algorithm but consumes more CPU time. */
+    //FMOD_DSP_TYPE_ITLOWPASS,          /* This unit filters sound using a resonant lowpass filter algorithm that is used in Impulse Tracker, but with limited cutoff range (0 to 8060hz). */
+    //FMOD_DSP_TYPE_HIGHPASS,           /* This unit filters sound using a resonant highpass filter algorithm. */
+    //FMOD_DSP_TYPE_ECHO,               /* This unit produces an echo on the sound and fades out at the desired rate. */
+    //FMOD_DSP_TYPE_FLANGE,             /* This unit produces a flange effect on the sound. */
+    //FMOD_DSP_TYPE_DISTORTION,         /* This unit distorts the sound. */
+    //FMOD_DSP_TYPE_NORMALIZE,          /* This unit normalizes or amplifies the sound to a certain level. */
+    //FMOD_DSP_TYPE_PARAMEQ,            /* This unit attenuates or amplifies a selected frequency range. */
+    //FMOD_DSP_TYPE_PITCHSHIFT,         /* This unit bends the pitch of a sound without changing the speed of playback. */
+    //FMOD_DSP_TYPE_CHORUS,             /* This unit produces a chorus effect on the sound. */
+    //FMOD_DSP_TYPE_VSTPLUGIN,          /* This unit allows the use of Steinberg VST plugins */
+    //FMOD_DSP_TYPE_WINAMPPLUGIN,       /* This unit allows the use of Nullsoft Winamp plugins */
+    //FMOD_DSP_TYPE_ITECHO,             /* This unit produces an echo on the sound and fades out at the desired rate as is used in Impulse Tracker. */
+    //FMOD_DSP_TYPE_COMPRESSOR,         /* This unit implements dynamic compression (linked multichannel, wideband) */
+    //FMOD_DSP_TYPE_SFXREVERB,          /* This unit implements SFX reverb */
+    //FMOD_DSP_TYPE_LOWPASS_SIMPLE,     /* This unit filters sound using a simple lowpass with no resonance, but has flexible cutoff and is fast. */
+    //FMOD_DSP_TYPE_DELAY,              /* This unit produces different delays on individual channels of the sound. */
+    //FMOD_DSP_TYPE_TREMOLO,            /* This unit produces a tremolo / chopper effect on the sound. */
+    //FMOD_DSP_TYPE_LADSPAPLUGIN,       /* This unit allows the use of LADSPA standard plugins. */
+    //FMOD_DSP_TYPE_HIGHPASS_SIMPLE,    /* This unit filters sound using a simple highpass with no resonance, but has flexible cutoff and is fast. */
+    //FMOD_DSP_TYPE_HARDWARE = 1000,    /* Offset that platform specific FMOD_HARDWARE DSPs will start at. */
+    //FMOD_DSP_TYPE_FORCEINT = 65536    /* Makes sure this enum is signed 32bit. */
+    // To:
+    //FMOD1_DSP_TYPE_UNKNOWN,            /* This unit was created via a non FMOD plugin so has an unknown purpose. */
+    //FMOD1_DSP_TYPE_MIXER,              /* This unit does nothing but take inputs and mix them together then feed the result to the soundcard unit. */
+    //FMOD1_DSP_TYPE_OSCILLATOR,         /* This unit generates sine/square/saw/triangle or noise tones. */
+    //FMOD1_DSP_TYPE_LOWPASS,            /* This unit filters sound using a high quality, resonant lowpass filter algorithm but consumes more CPU time. */
+    //FMOD1_DSP_TYPE_ITLOWPASS,          /* This unit filters sound using a resonant lowpass filter algorithm that is used in Impulse Tracker, but with limited cutoff range (0 to 8060hz). */
+    //FMOD1_DSP_TYPE_HIGHPASS,           /* This unit filters sound using a resonant highpass filter algorithm. */
+    //FMOD1_DSP_TYPE_ECHO,               /* This unit produces an echo on the sound and fades out at the desired rate. */
+    //FMOD1_DSP_TYPE_FADER,              /* This unit pans and scales the volume of a unit. */
+    //FMOD1_DSP_TYPE_FLANGE,             /* This unit produces a flange effect on the sound. */
+    //FMOD1_DSP_TYPE_DISTORTION,         /* This unit distorts the sound. */
+    //FMOD1_DSP_TYPE_NORMALIZE,          /* This unit normalizes or amplifies the sound to a certain level. */
+    //FMOD1_DSP_TYPE_LIMITER,            /* This unit limits the sound to a certain level.*/
+    //FMOD1_DSP_TYPE_PARAMEQ,            /* This unit attenuates or amplifies a selected frequency range. */
+    //FMOD1_DSP_TYPE_PITCHSHIFT,         /* This unit bends the pitch of a sound without changing the speed of playback. */
+    //FMOD1_DSP_TYPE_CHORUS,             /* This unit produces a chorus effect on the sound. */
+    //FMOD1_DSP_TYPE_VSTPLUGIN,          /* This unit allows the use of Steinberg VST plugins */
+    //FMOD1_DSP_TYPE_WINAMPPLUGIN,       /* This unit allows the use of Nullsoft Winamp plugins */
+    //FMOD1_DSP_TYPE_ITECHO,             /* This unit produces an echo on the sound and fades out at the desired rate as is used in Impulse Tracker. */
+    //FMOD1_DSP_TYPE_COMPRESSOR,         /* This unit implements dynamic compression (linked multichannel, wideband) */
+    //FMOD1_DSP_TYPE_SFXREVERB,          /* This unit implements SFX reverb */
+    //FMOD1_DSP_TYPE_LOWPASS_SIMPLE,     /* This unit filters sound using a simple lowpass with no resonance, but has flexible cutoff and is fast. */
+    //FMOD1_DSP_TYPE_DELAY,              /* This unit produces different delays on individual channels of the sound. */
+    //FMOD1_DSP_TYPE_TREMOLO,            /* This unit produces a tremolo / chopper effect on the sound. */
+    //FMOD1_DSP_TYPE_LADSPAPLUGIN,       /* Unsupported / Deprecated. */
+    //FMOD1_DSP_TYPE_SEND,               /* This unit sends a copy of the signal to a return DSP anywhere in the DSP tree. */
+    //FMOD1_DSP_TYPE_RETURN,             /* This unit receives signals from a number of send DSPs. */
+    //FMOD1_DSP_TYPE_HIGHPASS_SIMPLE,    /* This unit filters sound using a simple highpass with no resonance, but has flexible cutoff and is fast. */
+    //FMOD1_DSP_TYPE_PAN,                /* This unit pans the signal, possibly upmixing or downmixing as well. */
+    //FMOD1_DSP_TYPE_THREE_EQ,           /* This unit is a three-band equalizer. */
+    //FMOD1_DSP_TYPE_FFT,                /* This unit simply analyzes the signal and provides spectrum information back through getParameter. */
+    //FMOD1_DSP_TYPE_LOUDNESS_METER,     /* This unit analyzes the loudness and true peak of the signal. */
+    //FMOD1_DSP_TYPE_ENVELOPEFOLLOWER,   /* This unit tracks the envelope of the input/sidechain signal. Format to be publicly disclosed soon. */
+    //FMOD1_DSP_TYPE_CONVOLUTIONREVERB,  /* This unit implements convolution reverb. */
+    //FMOD1_DSP_TYPE_MAX,                /* Maximum number of pre-defined DSP types. */
+    //FMOD1_DSP_TYPE_FORCEINT = 65536    /* Makes sure this enum is signed 32bit. */
+    switch(type)
+    {
+        case FMOD_DSP_TYPE_UNKNOWN: return FMOD1_DSP_TYPE_UNKNOWN;
+        case FMOD_DSP_TYPE_MIXER: return FMOD1_DSP_TYPE_MIXER;
+        case FMOD_DSP_TYPE_OSCILLATOR: return FMOD1_DSP_TYPE_OSCILLATOR;
+        case FMOD_DSP_TYPE_LOWPASS: return FMOD1_DSP_TYPE_LOWPASS;
+        case FMOD_DSP_TYPE_ITLOWPASS: return FMOD1_DSP_TYPE_ITLOWPASS;
+        case FMOD_DSP_TYPE_HIGHPASS: return FMOD1_DSP_TYPE_HIGHPASS;
+        case FMOD_DSP_TYPE_ECHO: return FMOD1_DSP_TYPE_ECHO;
+        case FMOD_DSP_TYPE_FLANGE: return FMOD1_DSP_TYPE_FLANGE;
+        case FMOD_DSP_TYPE_DISTORTION: return FMOD1_DSP_TYPE_DISTORTION;
+        case FMOD_DSP_TYPE_NORMALIZE: return FMOD1_DSP_TYPE_NORMALIZE;
+        case FMOD_DSP_TYPE_PARAMEQ: return FMOD1_DSP_TYPE_PARAMEQ;
+        case FMOD_DSP_TYPE_PITCHSHIFT: return FMOD1_DSP_TYPE_PITCHSHIFT;
+        case FMOD_DSP_TYPE_CHORUS: return FMOD1_DSP_TYPE_CHORUS;
+        case FMOD_DSP_TYPE_VSTPLUGIN: return FMOD1_DSP_TYPE_VSTPLUGIN;
+        case FMOD_DSP_TYPE_WINAMPPLUGIN: return FMOD1_DSP_TYPE_WINAMPPLUGIN;
+        case FMOD_DSP_TYPE_ITECHO: return FMOD1_DSP_TYPE_ITECHO;
+        case FMOD_DSP_TYPE_COMPRESSOR: return FMOD1_DSP_TYPE_COMPRESSOR;
+        case FMOD_DSP_TYPE_SFXREVERB: return FMOD1_DSP_TYPE_SFXREVERB;
+        case FMOD_DSP_TYPE_LOWPASS_SIMPLE: return FMOD1_DSP_TYPE_LOWPASS_SIMPLE;
+        case FMOD_DSP_TYPE_DELAY: return FMOD1_DSP_TYPE_DELAY;
+        case FMOD_DSP_TYPE_TREMOLO: return FMOD1_DSP_TYPE_TREMOLO;
+        case FMOD_DSP_TYPE_LADSPAPLUGIN: return FMOD1_DSP_TYPE_LADSPAPLUGIN;
+        case FMOD_DSP_TYPE_HIGHPASS_SIMPLE: return FMOD1_DSP_TYPE_HIGHPASS_SIMPLE;
+        case FMOD_DSP_TYPE_HARDWARE: return FMOD1_DSP_TYPE_UNKNOWN; //...
+    }
+    return FMOD1_DSP_TYPE_UNKNOWN;
+}
